@@ -42,7 +42,12 @@ setuptools.setup(
         "Operating System :: OS Independent",
     ],
     package_dir={"": "src"},
-    packages=setuptools.find_packages(where="src", exlude=["tests*"]), # finds all Python packages to include
+    package_data={ # specifies other files to include that aren't Python files, but are needed by the project - different from MANIFEST.in, which usually holds non-code files - THIS IS RELATIVE PATH
+        "sample": ["package_data.dat"]
+    }
+    data_files=None # similar to package_data but absolute path
+    install_requires=["boto3", "requests"], # dependencies of project
+    packages=setuptools.find_packages(where="src", exlude=["tests*"]), # finds all Python packages to include, exclude only pertains to built distributions
     python_requires=">=3.6",
 )
 ```
